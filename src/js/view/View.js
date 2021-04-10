@@ -3,9 +3,22 @@ import icons from "../../img/icons.svg";
 export default class View {
     _data;
 
-    render(data) {
-         this._data = data;
+    /**
+     * Render the received object to the DOM
+     * @param { Object || Object[]} data The data to be render (ex: recipe)
+     * @param { boolean } [render = true] if false, creat markup string instead of rendering to the DOM
+     * @returns { undefined | string } A markup string is returned if render = false
+     * @this {Object} View instance
+     * @author Jonas
+     * @todo finish implimentation
+     */
+
+    render(data, render = true) {
+        this._data = data;
         const markup = this._generateMarkup();
+
+        if(!render) return markup;
+
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
     }
